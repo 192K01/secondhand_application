@@ -3,5 +3,6 @@ public class Main {
     System.out.println("Hello world!");
     // 알고리즘을 짜봅시다
     // 강영찬
+    //앙 기모띠
   }
 }
