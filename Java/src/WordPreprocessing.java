@@ -14,7 +14,7 @@ public class WordPreprocessing{ // 문자전처리 클래스
     return result.toString();
   }
   String processSpecialCharacters(String word){ // 특수문자 처리 메소드
-    String result = null; 
+    String result = null;
     return result;
   }
   String toLowerCase(String word){ // 대소문자 구별(대문자 -> 소문자)
