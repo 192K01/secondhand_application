@@ -1,3 +1,5 @@
+package com.tp004.search.secondhandapp;
+
 public class WordPreprocessing{ // 문자전처리 클래스
   String removeWhitespace(String word){ // 공백제거 메소드
     StringBuilder result = new StringBuilder();
@@ -18,8 +20,12 @@ public class WordPreprocessing{ // 문자전처리 클래스
     return result;
   }
   String toLowerCase(String word){ // 대소문자 구별(대문자 -> 소문자)
-    String result = null;
-    return result;
+    if (word == null) {
+      return null;
+    }
+    return word.toLowerCase();
+
+
   }
   String[] morphologicalAnalysis(String word){ // 형태소분석
     String[] result = null;

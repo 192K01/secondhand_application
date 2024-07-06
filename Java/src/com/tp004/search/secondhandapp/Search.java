@@ -1,3 +1,5 @@
+package com.tp004.search.secondhandapp;
+
 public interface Search {
   String[] searchWordPreprocessing(String word); // 검색어 전처리
 }
