@@ -1,27 +1,47 @@
 package com.tp004.recommender.secondhandapp;
+import java.util.*;
+import java.util.stream.Collectors;
 
-public interface Recommender { // 추천 인터페이스
-  // 우선순위 점수
+public class Recommender {
+  List<User> users;
+  List<Post> posts;
+
+  Recommender(List<User> users, List<Post> posts) {
+    this.users = users;
+    this.posts = posts;
+  }
+
+  // 사용자의 유사도를 계산
+  private double calculateSimilarity(User u1, User u2) {
+    Set<Integer> commonLikes = new HashSet<>(u1.likedPosts);
+    commonLikes.retainAll(u2.likedPosts);
+    return (double) commonLikes.size() / Math.sqrt(u1.likedPosts.size() * u2.likedPosts.size());
+  }
+
+  // 추천 게시물을 반환
+  public List<Post> recommendPosts(int userId) {
+    User currentUser = users.stream().filter(u -> u.id == userId).findFirst().orElse(null);
+    if (currentUser == null) return Collections.emptyList();
+
+    // 다른 사용자와의 유사도 계산
+    Map<User, Double> similarityMap = new HashMap<>();
+    for (User user : users) {
+      if (user.id != userId) {
+        double similarity = calculateSimilarity(currentUser, user);
+        similarityMap.put(user, similarity);
+      }
+    }
+
+    // 유사한 사용자가 좋아한 게시물 추천
+    List<Integer> recommendedPostIds = similarityMap.entrySet().stream()
+        .sorted(Map.Entry.<User, Double>comparingByValue().reversed())
+        .limit(5) // 가장 유사한 5명의 사용자 선택
+        .flatMap(entry -> entry.getKey().likedPosts.stream())
+        .distinct()
+        .collect(Collectors.toList());
+
+    return posts.stream().filter(p -> recommendedPostIds.contains(p.id)).collect(Collectors.toList());
+  }
+
+
 }
-/*
-활용 DB(검색어, 나이, 성별, 개인검색DB, 최신인가?)
-
-<고려대상>
-개인검색기록에 연관되있는가?
-최신 검색된 것인가?
-비슷한 나이대 사람들이 많이 검색하는가?
-동일한 성별의 사람들이 많이 검색하는가?
-전체 사람들이 많이 검색하는가?
-
-서순?
-
-개인검색기록은 흐음
-
-개인 맞춤 vs 유행 추천 3 : 1?????
-i
-
-그러면 구조는?
-DB에서 데이터 qke
-개인검색기록에서 얼마나 했는 지
-
-*/
