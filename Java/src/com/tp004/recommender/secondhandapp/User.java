@@ -5,11 +5,17 @@ import java.util.List;
 class User {
   int id;
   String name;
-  List<Integer> likedPosts; // 사용자가 좋아한 게시물 ID 목록
+  List<Integer> likedPosts;
+  int age; // 나이
+  String gender; // 성별 ("M" 또는 "F"로 표기)
+  String location; // 거주지
 
-  User(int id, String name, List<Integer> likedPosts) {
+  User(int id, String name, List<Integer> likedPosts, int age, String gender, String location) {
     this.id = id;
     this.name = name;
     this.likedPosts = likedPosts;
+    this.age = age;
+    this.gender = gender;
+    this.location = location;
   }
 }

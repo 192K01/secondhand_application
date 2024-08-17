@@ -13,6 +13,6 @@ class Post {
 
   @Override
   public String toString() {
-    return String.format("id : %d\ntitle : %s\n category : %s", id, title, category);
+    return String.format("id : %d / title : %s / category : %s", id, title, category);
   }
 }
