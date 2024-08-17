@@ -10,7 +10,7 @@ class User {
   String gender; // 성별 ("M" 또는 "F"로 표기)
   String location; // 거주지
 
-  User(int id, String name, List<Integer> likedPosts, int age, String gender, String location) {
+  User(int id, String name, int age, String gender, String location, List<Integer> likedPosts) {
     this.id = id;
     this.name = name;
     this.likedPosts = likedPosts;
