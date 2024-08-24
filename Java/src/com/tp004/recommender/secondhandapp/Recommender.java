@@ -53,7 +53,7 @@ public class Recommender {
         .limit(5) // 가장 유사한 5명의 사용자 선택
         .flatMap(entry -> entry.getKey().likedPosts.stream())
         .distinct()
-        .collect(Collectors.toList());
+        .toList();
 
     return posts.stream().filter(p -> recommendedPostIds.contains(p.id)).collect(Collectors.toList());
   }
