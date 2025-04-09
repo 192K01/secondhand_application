@@ -1,0 +1,13 @@
+* NCS 실행하기
+
+1. data 파일 안에 (hsa, mm, dme, cel, sce).net 저장하기
+
+2. convert_all.m 실행 (data파일 안에 있음)
+- hsa, mm, dme, cel, sce의 .net으로 되어 있는 형식을 .mat으로 변환시켜주는 거임
+
+3. run_all_pair.m 실행
+ - 이제 각 protein끼리의 one to one mapping이 실행되게 된다.
+
+4. export_all_matches.n 실행
+ - 앞에 matching된 결과를 txt파일 형식으로 확인 할 수 있게 해준다
+ - results 파일 안에 txt파일이 저장되어 있다
